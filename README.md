@@ -1,35 +1,28 @@
-## 0x0C. C - More malloc, free
-
-## Memory allocation
-
-## Concepts
-
-For this project, we expect you to look at this concept:
-
-Automatic and dynamic allocation, malloc and free: https://alx-intranet.hbtn.io/concepts/62
+## 0x13. C - More singly linked lists
 
 ## Resources
 
+Read or watch:
 
-Do I cast the result of malloc?: https://stackoverflow.com/questions/605845/do-i-cast-the-result-of-malloc
+Google: https://www.google.com/#q=linked+lists
 
-man or help
-
-exit (3)
-
-calloc
-
-realloc
+Youtube: https://www.youtube.com/results?search_query=linked+lists
 
 ## Learning Objectives
 
 At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
 
-How to use the exit function
+General
 
-What are the functions calloc and realloc from the standard library and how to use them
+How to use linked lists
+
+Start to look for the right source of information without too much help
+
+Copyright - Plagiarism
 
 ## Requirements
+
+General
 
 Allowed editors: vi, vim, emacs
 
@@ -51,110 +44,191 @@ You are allowed to use _putchar
 
 You don’t have to push _putchar.c, we will use our file. If you do it won’t be taken into account
 
-In the following examples, the main.c files are shown as examples. You can use them to test your functions, but you don’t have to push them to your repo (if you do we won’t take them into account). We will use our own main.c files at compilation. Our main.c files might be different from the one shown in the examples
+In the following examples, the main.c files are shown as examples. You can use them to test your functions, but you don’t have to push them to your repo (if you do we 
+won’t take them into account). We will use our own main.c files at compilation. Our main.c files might be different from the one shown in the examples
 
-The prototypes of all your functions and the prototype of the function _putchar should be included in your header file called main.h
+The prototypes of all your functions and the prototype of the function _putchar should be included in your header file called lists.h
+
 Don’t forget to push your header file
 
-## Tasks
+All your header files should be include guarded
 
-## Task 0. Trust no one
+More Info
 
-Write a function that allocates memory using malloc.
+Please use this data structure for this project:
 
-Prototype: void *malloc_checked(unsigned int b);
+/**
+ * struct listint_s - singly linked list
+ * @n: integer
+ * @next: points to the next node
+ *
+ * Description: singly linked list node structure
+ * 
+ */
+typedef struct listint_s
 
-Returns a pointer to the allocated memory
+{
+    int n;
+    
+    struct listint_s *next;
+    
+} listint_t;
 
-if malloc fails, the malloc_checked function should cause normal process termination with a status value of 98
+## Tasks 0. Print list
+**Write a function that prints all the elements of a listint_t list**
 
-## Task 1. string_nconcat
+Prototype: size_t print_listint(const listint_t *h);
 
-Write a function that concatenates two strings.
+Return: the number of nodes
 
-Prototype: char *string_nconcat(char *s1, char *s2, unsigned int n);
+Format: see example
 
-The returned pointer shall point to a newly allocated space in memory, which contains s1, followed by the first n bytes of s2, and null terminated
+You are allowed to use printf
 
-If the function fails, it should return NULL
+   
+## Task 1. List length
 
-If n is greater or equal to the length of s2 then use the entire string s2
+**Write a function that returns the number of elements in a linked listint_t list**
 
-if NULL is passed, treat it as an empty string 
+Prototype: size_t listint_len(const listint_t *h);
+   
+## Task 2. Add node
 
-## Task 2. calloc
+**Write a function that adds a new node at the beginning of a listint_t list.**
 
-Write a function that allocates memory for an array, using malloc.
+Prototype: listint_t *add_nodeint(listint_t **head, const int n);
 
-Prototype: void *_calloc(unsigned int nmemb, unsigned int size);
+Return: the address of the new element, or NULL if it failed
+   
+## Task 3. Add node at the end
 
-The _calloc function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory.
+**Write a function that adds a new node at the end of a listint_t list.**
 
-The memory is set to zero
+Prototype: listint_t *add_nodeint_end(listint_t **head, const int n);
 
-If nmemb or size is 0, then _calloc returns NULL
-
-If malloc fails, then _calloc returns NULL
-
-FYI: The standard library provides a different function: calloc. Run man calloc to learn more.
-
-## Task 3 . array_range
-
-Write a function that creates an array of integers.
-
-Prototype: int *array_range(int min, int max);
-
-The array created should contain all the values from min (included) to max (included), ordered from min to max
-
-Return: the pointer to the newly created array
-
-If min > max, return NULL
-
-If malloc fails, return NULL
+Return: the address of the new element, or NULL if it failed
 
 
+## Task 4. Free list
 
-## Task 4. realloc
+**Write a function that frees a listint_t list.**
 
-Write a function that reallocates a memory block using malloc and free
+Prototype: void free_listint(listint_t *head);
 
-Prototype: void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
-where ptr is a pointer to the memory previously allocated with a call to malloc: malloc(old_size)
+#3 Task 5. Free
 
-old_size is the size, in bytes, of the allocated space for ptr
+**Write a function that frees a listint_t list.**
 
-and new_size is the new size, in bytes of the new memory block
+Prototype: void free_listint2(listint_t **head);
 
-The contents will be copied to the newly allocated space, in the range from the start of ptr up to the minimum of the old and new sizes
+The function sets the head to NULL
+   
+## Task 6. Pop
 
-If new_size > old_size, the “added” memory should not be initialized
+**Write a function that deletes the head node of a listint_t linked list, and returns the head node’s data (n).**
 
-If new_size == old_size do not do anything and return ptr
+Prototype: int pop_listint(listint_t **head);
 
-If ptr is NULL, then the call is equivalent to malloc(new_size), for all values of old_size and new_size
+if the linked list is empty return 0
 
-If new_size is equal to zero, and ptr is not NULL, then the call is equivalent to free(ptr). Return NULL
 
-Don’t forget to free ptr when it makes sense
+## Task 7. Get node at index
 
-FYI: The standard library provides a different function: realloc. Run man realloc to learn more.
+**Write a function that returns the nth node of a listint_t linked list.**
 
-## Task . We must accept finite disappointment, but never lose infinite hope
+Prototype: listint_t *get_nodeint_at_index(listint_t *head, unsigned int index);
 
-Write a program that multiplies two positive numbers.
+where index is the index of the node, starting at 0
 
-Usage: mul num1 num2
+if the node does not exist, return NULL
 
-num1 and num2 will be passed in base 10
 
-Print the result, followed by a new line
+   
+## Task 8. Sum list
 
-If the number of arguments is incorrect, print Error, followed by a new line, and exit with a status of 98
+**Write a function that returns the sum of all the data (n) of a listint_t linked list.**
 
-num1 and num2 should only be composed of digits. If not, print Error, followed by a new line, and exit with a status of 98
+Prototype: int sum_listint(listint_t *head);
 
-You are allowed to use more than 5 functions in your file
+if the list is empty, return 0
 
-You can use bc (man bc) to check your results.
+julien@ubuntu:~/0x13. More singly linked lists$ cat 8-main.c 
+   
+## Task 9. Insert
 
+**Write a function that inserts a new node at a given position.**
+
+Prototype: listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n);
+
+where idx is the index of the list where the new node should be added. Index starts at 0
+
+Returns: the address of the new node, or NULL if it failed
+
+if it is not possible to add the new node at index idx, do not add the new node and return NULL
+
+## Task 10. Delete at index
+
+**Write a function that deletes the node at index index of a listint_t linked list.**
+
+Prototype: int delete_nodeint_at_index(listint_t **head, unsigned int index);
+
+where index is the index of the node that should be deleted. Index starts at 0
+
+Returns: 1 if it succeeded, -1 if it failed
+
+## Task 11. Reverse list
+
+**Write a function that reverses a listint_t linked list.**
+
+Prototype: listint_t *reverse_listint(listint_t **head);
+
+Returns: a pointer to the first node of the reversed list
+
+You are not allowed to use more than 1 loop.
+
+You are not allowed to use malloc, free or arrays
+
+You can only declare a maximum of two variables in your function
+
+## Task 12. Print (safe version)
+
+**Write a function that prints a listint_t linked list.**
+
+Prototype: size_t print_listint_safe(const listint_t *head);
+
+Returns: the number of nodes in the list
+
+This function can print lists with a loop
+
+You should go through the list only once
+
+If the function fails, exit the program with status 98
+
+Output format: see example
+
+## Task 13. Free (safe version)
+
+**Write a function that frees a listint_t list.**
+
+Prototype: size_t free_listint_safe(listint_t **h);
+
+This function can free lists with a loop
+
+You should go though the list only once
+
+Returns: the size of the list that was free’d
+
+The function sets the head to NULL
+
+##  Task14. Find the loop
+
+*Write a function that finds the loop in a linked list.*
+
+Prototype: listint_t *find_listint_loop(listint_t *head);
+
+Returns: The address of the node where the loop starts, or NULL if there is no loop
+
+You are not allowed to use malloc, free or arrays
+
+You can only declare a maximum of two variables in your function

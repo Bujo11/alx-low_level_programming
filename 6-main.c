@@ -1,5 +1,7 @@
-#include "main.h"
+#include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
+#include "lists.h"
 
 /**
  * main - check the code
@@ -8,23 +10,26 @@
  */
 int main(void)
 {
-	int r;
+	listint_t *head;
+	int n;
 
-	r = is_prime_number(1);
-	printf("%d\n", r);
-	r = is_prime_number(1024);
-	printf("%d\n", r);
-	r = is_prime_number(16);
-	printf("%d\n", r);
-	r = is_prime_number(17);
-	printf("%d\n", r);
-	r = is_prime_number(25);
-	printf("%d\n", r);
-	r = is_prime_number(-1);
-	printf("%d\n", r);
-	r = is_prime_number(113);
-	printf("%d\n", r);
-	r = is_prime_number(7919);
-	printf("%d\n", r);
+	head = NULL;
+	add_nodeint_end(&head, 0);
+	add_nodeint_end(&head, 1);
+	add_nodeint_end(&head, 2);
+	add_nodeint_end(&head, 3);
+	add_nodeint_end(&head, 4);
+	add_nodeint_end(&head, 98);
+	add_nodeint_end(&head, 402);
+	add_nodeint_end(&head, 1024);
+	print_listint(head);
+	n = pop_listint(&head);
+	printf("- %d\n", n);
+	print_listint(head);
+	n = pop_listint(&head);
+	printf("- %d\n", n);
+	print_listint(head);
+	free_listint2(&head);
+	printf("%p\n", (void *)head);
 	return (0);
 }

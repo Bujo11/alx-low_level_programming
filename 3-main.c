@@ -1,35 +1,7 @@
-#include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-/**
- * simple_print_buffer - prints buffer in hexa
- * @buffer: the address of memory to print
- * @size: the size of the memory to print
- *
- * Return: Nothing.
- */
-void simple_print_buffer(int *buffer, unsigned int size)
-{
-	unsigned int i;
-
-	i = 0;
-	while (i < size)
-	{
-		if (i % 10)
-		{
-			printf(" ");
-		}
-		if (!(i % 10) && i)
-		{
-			printf("\n");
-		}
-		printf("0x%02x", buffer[i]);
-		i++;
-	}
-	printf("\n");
-}
+#include <stdio.h>
+#include "lists.h"
 
 /**
  * main - check the code
@@ -38,10 +10,17 @@ void simple_print_buffer(int *buffer, unsigned int size)
  */
 int main(void)
 {
-	int *a;
+	listint_t *head;
 
-	a = array_range(0, 10);
-	simple_print_buffer(a, 11);
-	free(a);
+	head = NULL;
+	add_nodeint_end(&head, 0);
+	add_nodeint_end(&head, 1);
+	add_nodeint_end(&head, 2);
+	add_nodeint_end(&head, 3);
+	add_nodeint_end(&head, 4);
+	add_nodeint_end(&head, 98);
+	add_nodeint_end(&head, 402);
+	add_nodeint_end(&head, 1024);
+	print_listint(head);
 	return (0);
 }
